@@ -4,6 +4,16 @@ package com.example.lib;
  * 人类这一层已经有了属性（名字，年龄），再抽象成接口就不合理了，这儿声明成了类
  */
 public class Person implements Primat {
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     //构造函数
     public Person(String name, String sex, Integer age) {
         this.name = name;
@@ -51,10 +61,30 @@ public class Person implements Primat {
      * @return
      */
     public boolean isSame(Person person) {
-        //如果名字相同，年龄相同，性别相同
-        if (this.name.equals(person.name) && this.sex.equals(person.sex) && this.age.equals(person.age)) {
+        //如果名字相同返回true，否则返回false
+        if (this.name.equals(person.name)) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        //先判断是否是同一个对象，如果是直接返回true
+        if (this == other) {
+            return true;
+        }
+        //判断other是否是Person的实例
+        if (other instanceof Person) {
+            Person otherPerson = (Person) other;//转换类型
+            return name.equals(otherPerson.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        //重写hashCode方法，这里直接返回name的hashCode
+        return name.hashCode();
     }
 }

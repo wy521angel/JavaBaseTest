@@ -1,5 +1,10 @@
 package com.example.lib;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class MyClass {
     private static void packageTest() {
         System.out.println(Integer.MAX_VALUE);//打印int能表示的最大值
@@ -40,15 +45,58 @@ public class MyClass {
         ((Person) animal2).printAge();//把形态强制转型成Person形态，可以调用Person里的方法
     }
 
+    private static void samePersonTest() {
+        String str1 = new String("张三");
+        String str2 = new String("张三");
+        Set<String> strSet = new HashSet<>();
+        strSet.add(str1);
+        strSet.add(str2);
+        System.out.println("strSet.size()" + strSet.size());
+
+        Person person1 = new Person("张三");
+        Person person2 = new Person("张三");
+        Set<Person> personSet = new HashSet<>();
+        personSet.add(person1);
+        personSet.add(person2);
+        System.out.println("personSet.size()" + personSet.size());
+    }
+
+    private static void samePersonTest2() {
+        Person person1 = new Person("张三");
+        Person person2 = new Person("张三");
+        //引入List辅助测试
+        List<Person> perList = new ArrayList<>();
+        //把person1放入了List中，但是并没有放Person2
+        perList.add(person1);
+        //set
+        Set<Person> pSet = new HashSet<>();
+        //把person1放入了Set中，但是并没有放Person2
+        pSet.add(person1);
+        System.out.println("person1.equals(person2)" + person1.equals(person2));
+        System.out.println("perList.contains(person2)" + perList.contains(person2));
+        System.out.println("pSet.contains(person2)" + pSet.contains(person2));
+    }
+
+    private static void operateArrayList() {
+        List<Person> perList = new ArrayList<>();
+        perList.add(new Person("张三", 21));
+        perList.add(new Person("李四", 19));
+        perList.add(new Person("王五", 25));
+        perList.add(new Person("赵六", 24));
+        perList.add(new Person("孙七", 32));
+        perList.add(new Person("周八", 17));
+        perList.add(new Person("钱九", 24));
+        perList.add(new Person("吴十", 23));
+        perList.add(new Person("冯十一", 18));
+        perList.add(new Person("朱十二", 36));
+
+        perList.remove(5);//删除ArrayList里下标为5的元素
+        perList.remove(new Person("孙七", 32));//删除孙七
+        perList.add(2, new Person("李莫愁", 29));//把李莫愁放到下标为2的位置
+        System.out.println("perList.size()" + perList.size());
+    }
 
     public static void main(String[] args) {
-//        packageTest();
-//        animalTest();
-
-        Person person1 = new Person("张三", "男", 26);
-        Person person2 = new Person("张三", "男", 26);
-
-        System.out.println(person1.isSame(person2));
 
     }
 }
