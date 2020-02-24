@@ -2,8 +2,10 @@ package com.example.lib;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 public class MyClass {
     private static void packageTest() {
@@ -94,6 +96,19 @@ public class MyClass {
         perList.remove(new Person("孙七", 32));//删除孙七
         perList.add(2, new Person("李莫愁", 29));//把李莫愁放到下标为2的位置
         System.out.println("perList.size()" + perList.size());
+    }
+
+    private static void operateLinkedList() {
+        List<Person> perList = new LinkedList<>();
+        perList.add(new Person("张三", 21));
+        perList.add(new Person("李四", 19));
+        perList.add(new Person("王五", 25));
+        perList.add(new Person("赵六", 24));
+
+        System.out.println("删除前的perList.size()：" + perList.size());
+        boolean delState = perList.remove(new Person("王五", 25));//删除王五，返回删除状态
+        System.out.println("打印删除状态：" + delState);
+        System.out.println("删除后的perList.size()：" + perList.size());
     }
 
     public static void main(String[] args) {
