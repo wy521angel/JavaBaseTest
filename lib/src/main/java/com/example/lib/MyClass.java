@@ -3,6 +3,7 @@ package com.example.lib;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -127,7 +128,33 @@ public class MyClass {
         System.out.println("personMap.size()：" + personMap.size());
     }
 
-    public static void main(String[] args) {
+    private static void operateHashSet() {
+        Set<String> strSet = new HashSet<>();//new了一个HashSet
+        strSet.add("张三");
+        strSet.add("李四");
+        strSet.add("王五");
+        strSet.add("赵六");
 
+        System.out.println("strSet : " + strSet);
+        System.out.println("strSet.size() : " + strSet.size());
+        System.out.println("strSet里是否为空 : " + strSet.isEmpty());
+
+        System.out.println("删除王五。。。。");
+        boolean delFlag = strSet.remove("王五");
+        System.out.println("删除王五是否成功" + delFlag);
+        System.out.println("删除王五后的strSet : " + strSet);
+        System.out.println("strSet中是否包含王五：" + strSet.contains("王五"));
+        System.out.println("strSet中是否包含张三：" + strSet.contains("张三"));
+
+        System.out.println("clear清除元素...");
+        strSet.clear();
+        System.out.println("clear清除元素后的strSet : " + strSet);
+        System.out.println("strSet长度 : " + strSet.size());
+        System.out.println("strSet里是否为空 : " + strSet.isEmpty());
+    }
+
+    public static void main(String[] args) {
+        A a = new A();
+        System.out.println("调用测试:" + a.toString());
     }
 }
