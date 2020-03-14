@@ -1,5 +1,7 @@
 package com.example.lib;
 
+import com.example.lib.CountDownLatchTest.ApplicationStartupUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -153,8 +155,18 @@ public class MyClass {
         System.out.println("strSet里是否为空 : " + strSet.isEmpty());
     }
 
-    public static void main(String[] args) {
+    private static void testStaticBlock() {
         A a = new A();
         System.out.println("调用测试:" + a.toString());
+    }
+
+    public static void main(String[] args) {
+        boolean result = false;
+        try {
+            result = ApplicationStartupUtil.checkExternalServices();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("External services validation completed !! Result was :: " + result);
     }
 }

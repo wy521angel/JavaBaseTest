@@ -2,11 +2,15 @@ package com.example.lib.CountDownLatchTest;
 
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-public class CountDownLatchDemo {
+public class CountDownLatchDemo2 {
 
     private final static CountDownLatch cdl = new CountDownLatch(3);
     private final static Vector v = new Vector();
+    private final static ThreadPoolExecutor threadPool = new ThreadPoolExecutor(10, 15, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());//使用线程池
 
     private static class WriteThread extends Thread {
         private final String writeThreadName;
@@ -49,9 +53,15 @@ public class CountDownLatchDemo {
     }
 
     public static void main(String[] args) {
-        new ReadThread().start();
-        new WriteThread("writeThread1", 1000, "多线程知识点").start();
-        new WriteThread("writeThread2", 2000, "多线程CountDownLatch的知识点").start();
-        new WriteThread("writeThread3", 3000, "多线程中控制顺序可以使用CountDownLatch").start();
+        Thread read = new ReadThread();
+        threadPool.execute(read);
+        String[] str = {"多线程知识点", "多线程CountDownLatch的知识点", "多线程中控制顺序可以使用CountDownLatch"};
+        for (int i = 0; i < 3; i++) {
+            Thread t1 = new WriteThread("writeThread" + (i + 1), 1000 * (i + 1), str[i]);
+            threadPool.execute(t1);
+        }
+        //new WriteThread("writeThread1",1000,"多线程知识点").start();
+        //new WriteThread("writeThread2",2000,"多线程CountDownLatch的知识点").start();
+        //new WriteThread("writeThread3",3000,"多线程中控制顺序可以使用CountDownLatch").start();
     }
 }
