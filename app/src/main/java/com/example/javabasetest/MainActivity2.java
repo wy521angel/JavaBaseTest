@@ -1,6 +1,7 @@
 package com.example.javabasetest;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,4 +63,9 @@ public class MainActivity2 extends AppCompatActivity {
         Log.i(TAG, "Activity2----------------------------->onDestroy");
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.i(TAG, "Activity2----------------------------->onConfigurationChanged");
+    }
 }

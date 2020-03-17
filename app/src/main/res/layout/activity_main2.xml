@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <com.example.javabasetest.MyButton
         android:id="@+id/test"
-        android:gravity="center"
         android:layout_width="100dp"
         android:layout_height="40dp"
+        android:gravity="center"
         android:text="finished"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
